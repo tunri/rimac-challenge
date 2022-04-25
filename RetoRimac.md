@@ -2,6 +2,7 @@
 - MUI: Suite de UI components
 - React router: Rutas
 - Yup
+- React Hook Forms
 - SASS: preprocesador para estilos
 
 ## Task Development 
@@ -25,10 +26,8 @@ Grid Layout
 ## Run locally
 Revisar el archivo readme.md para ejecutar el proyecto de manera local
 
-## Repository
-
 ## Deploy
 
-
+[website](https://github.com/zjerson/rimac-challenge)
 
 
