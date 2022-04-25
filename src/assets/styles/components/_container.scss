@@ -1,0 +1,12 @@
+// from figma
+$columns: 37;
+$widthColumnsMobile: 8px;
+$widthColumnsDesktop: 32px;
+
+.r-container {
+    width: 100%;
+    max-width: $columns*$widthColumnsDesktop !important;
+    padding-left: 32px;
+    padding-right: 32px;
+    margin: 0 auto;
+}

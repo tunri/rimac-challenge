@@ -1,0 +1,30 @@
+// media aliases and breakpoints as mui
+$screen-sm-min: 600px;
+$screen-md-min: 900px;
+$screen-lg-min: 1200px;
+$screen-xl-min: 1536px;
+
+@mixin gt-sm {
+    @media screen and (min-width: #{$screen-sm-min}) {
+        @content;
+    }
+}
+
+@mixin gt-md {
+    @media screen and (min-width: #{$screen-md-min}) {
+        @content;
+    }
+}
+
+@mixin gt-lg {
+    @media screen and (min-width: #{$screen-lg-min}) {
+        @content;
+    }
+}
+
+
+@mixin gt-xl {
+    @media screen and (min-width: #{$screen-xl-min}) {
+        @content;
+    }
+}

@@ -1,0 +1,20 @@
+.MuiFormControl-root {
+
+    .MuiInputLabel-root {
+        color: var(--color-grey-400);
+    }
+
+    .MuiOutlinedInput-notchedOutline {
+        border-color: var(--color-grey-300);
+    }
+
+    .MuiOutlinedInput-input {
+        color: #333;
+    }
+
+    .MuiFormHelperText-root {
+        margin-left: 3px;
+    }
+
+
+}

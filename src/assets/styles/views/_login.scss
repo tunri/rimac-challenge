@@ -1,0 +1,43 @@
+.page-login {
+    position: relative;
+    display: flex;
+
+    &__left {
+        @include gt-md {
+            background-color: #E1E4F4;
+            background-image: url('/assets/images/bg-city.png');
+            background-position: center;
+            background-size: cover;
+        }
+    }
+
+    &__left,
+    &__right {
+        @include gt-md {
+            @include flex-centered;
+        }
+    }
+
+    &__wrap-banner {
+        display: flex;
+        width: calc(100% - 85px);
+        align-items: center;
+
+        @include gt-md {
+            width: 100%;
+            margin: 0 auto;
+            align-items: initial;
+            justify-content: center;
+        }
+    }
+
+    &__image {
+        position: absolute;
+        top: -2rem;
+        right: 0;
+
+        @include gt-md {
+            position: static;
+        }
+    }
+}
