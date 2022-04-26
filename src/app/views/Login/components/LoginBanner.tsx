@@ -1,7 +1,7 @@
 // components
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import RestrictComponent from "app/components/RestrictComponent";
+import RestrictedComponent from "app/components/RestrictedComponent";
 
 // assets
 import UserAppImageMobile from "assets/images/user-with-app.png";
@@ -16,13 +16,13 @@ const LoginBanner = ({ isDesktop }: LoginBannerProps) => {
 		<div className="r-container">
 			<Box className="page-login__wrap-banner">
 				<Box sx={{ maxWidth: isDesktop ? "320px" : "100%" }}>
-					<RestrictComponent condition={isDesktop}>
+					<RestrictedComponent condition={isDesktop}>
 						<img
 							src={UserAppImageDesktop}
 							alt="application"
 							className="page-login__image"
 						/>
-					</RestrictComponent>
+					</RestrictedComponent>
 					<Box sx={{ flexGrow: 1, mt: isDesktop ? 3 : 0 }}>
 						<Typography
 							variant="subtitle1"
@@ -55,13 +55,13 @@ const LoginBanner = ({ isDesktop }: LoginBannerProps) => {
 					</Box>
 				</Box>
 			</Box>
-			<RestrictComponent condition={!isDesktop}>
+			<RestrictedComponent condition={!isDesktop}>
 				<img
 					src={UserAppImageMobile}
 					alt="application"
 					className="page-login__image"
 				/>
-			</RestrictComponent>
+			</RestrictedComponent>
 		</div>
 	);
 };

@@ -1,0 +1,19 @@
+.tabs-mobile {
+    .MuiTabs-flexContainer {
+        .MuiTab-root {
+            padding-left: 0;
+            padding-right: 0;
+            font-size: 10px;
+            width: 33.333%;
+
+            @include gt-md {
+                padding-left: 0.5rem;
+                padding-right: 0.5rem;
+                font-size: 12px;
+            }
+            @include gt-lg {
+                font-size: 13px;
+            }
+        }
+    }
+}

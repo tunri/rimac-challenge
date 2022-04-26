@@ -1,13 +1,11 @@
-import { useTheme } from "@mui/material/styles";
-import useMediaQuery from "@mui/material/useMediaQuery";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import LoginBanner from "./components/LoginBanner";
 import LoginForm from "./components/LoginForm";
+import useDesktop from "app/hooks/useDesktop";
 
 const LoginPage = () => {
-	const theme = useTheme();
-	const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
+	const isDesktop = useDesktop();
 
 	return (
 		<Grid>

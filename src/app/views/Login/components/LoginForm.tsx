@@ -1,5 +1,6 @@
 import * as yup from "yup";
 import { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Box from "@mui/material/Box";
 import Link from "@mui/material/Link";
 import LoadingButton from "@mui/lab/LoadingButton";
@@ -54,6 +55,7 @@ const LoginForm = ({ isDesktop }: LoginFormProps) => {
 		resolver: yupResolver(schemaLogin),
 	});
 
+	const navigation = useNavigate();
 	const { updateState } = useContext(AppContext);
 
 	const [loading, setLoading] = useState(false);
@@ -73,6 +75,7 @@ const LoginForm = ({ isDesktop }: LoginFormProps) => {
 			};
 			const state: IState = { user, authenticated: true };
 			updateState(state);
+			navigation("plan");
 		} catch (error) {
 			alert(error);
 		} finally {
@@ -92,7 +95,11 @@ const LoginForm = ({ isDesktop }: LoginFormProps) => {
 				onSubmit={handleSubmit(onSubmit)}
 				noValidate
 			>
-				<Typography variant="h5" fontSize={24} sx={{ mb: 1 }}>
+				<Typography
+					variant="h5"
+					fontSize={isDesktop ? 28 : 24}
+					sx={{ mb: 1 }}
+				>
 					Dejanos tus datos
 				</Typography>
 				<Box sx={{ display: "flex", alignItems: "baseline" }}>
