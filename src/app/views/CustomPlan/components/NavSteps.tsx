@@ -5,6 +5,7 @@ import RestrictedComponent from "app/components/RestrictedComponent";
 
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ItemStep from "./ItemStep";
+import { Link } from "react-router-dom";
 
 interface ResponsiveProps {
 	isDesktop: boolean;
@@ -56,10 +57,12 @@ const NavSteps = ({ isDesktop }: ResponsiveProps) => {
 				</Box>
 			</RestrictedComponent>
 			<RestrictedComponent condition={isDesktop}>
-				<Box sx={{ py: 5, backgroundColor: "#F7F8FC", height: "100%" }}>
+				<Box sx={{ py: 5, px: 2, backgroundColor: "#F7F8FC", height: "100%" }}>
 					<Box sx={{ maxWidth: "224px", mx: "auto" }}>
 						<ItemStep number={1} text="Datos" sx={{ mb: 3 }} />
-						<ItemStep number={2} text="Arma tu plan" />
+						<Link to="/" className="underline-none">
+							<ItemStep number={2} text="Arma tu plan" active />
+						</Link>
 					</Box>
 				</Box>
 			</RestrictedComponent>

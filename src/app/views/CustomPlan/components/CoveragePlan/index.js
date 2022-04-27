@@ -26,8 +26,8 @@ const CoveragePlan = ({ isDesktop }) => {
         {/* Navigation */}
         <RestrictedComponent condition={isDesktop}>
           <Box sx={{ mb: 3 }}>
-            <Link to="/">
-              <BadgeRounded>
+            <Link to="/" className="underline-none">
+              <BadgeRounded color="#A3ABCC">
                 <ArrowBackIosIcon
                   sx={{
                     marginLeft: "4px",
@@ -74,6 +74,7 @@ const CoveragePlan = ({ isDesktop }) => {
               <InsureAmountIndicator
                 insureAmount={state.insureAmount}
                 setInsureAmount={(amount) => updateStore({ insureAmount: amount })}
+                isDesktop={isDesktop}
               />
             </Box>
 

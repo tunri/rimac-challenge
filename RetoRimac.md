@@ -20,8 +20,11 @@ Grid Layout
        - [x] Integración con servicio
      - Desarrollo de Context o Redux (Manage State)
        - [x] Estableciendo estado simple
-
-
+     - View Cobertura
+       - [x] Maquetación UI (MUI) para mobile y desktop
+       - [x] Agregado reestricciones a 'Suma asegurada' y 'Monto'
+       - [x] Uso de Context para almacenar los valores y usarlos en la siguiente ruta
+       - [x] Uso de Context para mostrar los datos iniciales
 
 ## Run locally
 Revisar el archivo readme.md para ejecutar el proyecto de manera local
