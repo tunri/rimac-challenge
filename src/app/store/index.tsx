@@ -1,5 +1,5 @@
 // context or redux
-// using context
+// algo basico con context
 
 import { IAppContext, IState } from "app/@interfaces/context";
 import { WithChildren } from "app/@types/with-children";
@@ -10,6 +10,8 @@ export const AppContext = createContext({} as IAppContext);
 const initialState: IState = {
 	user: null,
 	authenticated: false,
+	insureAmount: 16000,
+	monthlyAmount: 20,
 };
 
 const AppProvider = ({ children }: WithChildren) => {

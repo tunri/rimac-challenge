@@ -2,7 +2,7 @@ import Card from "@mui/material/Card";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import UserHappyImage from 'assets/images/user-happy.png';
-const CardLicense = ({ license }) => {
+const CardLicense = ({ license = "" }) => {
 	return (
 		<Card
 			sx={{

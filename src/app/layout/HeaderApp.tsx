@@ -1,3 +1,4 @@
+import { useLocation } from "react-router-dom";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Box from "@mui/material/Box";
@@ -5,7 +6,6 @@ import Typography from "@mui/material/Typography";
 
 import CallIcon from "@mui/icons-material/Call";
 import logoRimac from "assets/images/logo-color-rimac.svg";
-import { useLocation } from "react-router-dom";
 import useDesktop from "app/hooks/useDesktop";
 
 const HeaderApp = ({ height = 64 }: { height?: number }) => {

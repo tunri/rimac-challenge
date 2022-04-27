@@ -56,7 +56,7 @@ const LoginForm = ({ isDesktop }: LoginFormProps) => {
 	});
 
 	const navigation = useNavigate();
-	const { updateState } = useContext(AppContext);
+	const { state, updateState } = useContext(AppContext);
 
 	const [loading, setLoading] = useState(false);
 
@@ -73,8 +73,8 @@ const LoginForm = ({ isDesktop }: LoginFormProps) => {
 				lastName: name,
 				license: data.license,
 			};
-			const state: IState = { user, authenticated: true };
-			updateState(state);
+			const partialState: IState = { user, authenticated: true };
+			updateState({ ...state, ...partialState });
 			navigation("plan");
 		} catch (error) {
 			alert(error);

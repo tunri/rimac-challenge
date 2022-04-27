@@ -1,22 +1,23 @@
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
-import ButtonRounded from "app/components/ButtonRounded/ButtonRounded";
 import RestrictedComponent from "app/components/RestrictedComponent";
 
 import InsureAmountIndicator from "./InsureAmountIndicator";
 import MonthlyPayment from "./MonthlyPayment";
 import CardLicense from "./CardLicense";
 import CoverageList from "./CoverageList";
-import { useState } from "react";
-
+import BadgeRounded from "app/components/BadgeRounded";
+import { Link } from "react-router-dom";
+import useStore from "app/hooks/useStore";
 
 const CoveragePlan = ({ isDesktop }) => {
 
-  const [insureAmount, setInsureAmount] = useState(14000);
-  const [monthlyAmount, setMonthlyAmount] = useState(20);
+  const [state, updateState] = useStore();
 
-  // !TODO: aplicar useMemo en InsureAmountIndicator y CoverageList si es posible
+  const updateStore = (partialState) => {
+    updateState({ ...state, ...partialState });
+  }
 
   return (
     <Box sx={{ py: 5 }}>
@@ -25,16 +26,19 @@ const CoveragePlan = ({ isDesktop }) => {
         {/* Navigation */}
         <RestrictedComponent condition={isDesktop}>
           <Box sx={{ mb: 3 }}>
-            <ButtonRounded>
-              <ArrowBackIosIcon
-                sx={{
-                  marginLeft: "4px",
-                }}
-              />
-            </ButtonRounded>
-            <Typography variant="body2" component="span" sx={{ ml: 1, color: "#A3ABCC" }}>
-              VOLVER
-            </Typography>
+            <Link to="/">
+              <BadgeRounded>
+                <ArrowBackIosIcon
+                  sx={{
+                    marginLeft: "4px",
+                    fontSize: 10
+                  }}
+                />
+              </BadgeRounded>
+              <Typography variant="body2" component="span" sx={{ ml: 1, color: "#A3ABCC" }}>
+                VOLVER
+              </Typography>
+            </Link>
           </Box>
         </RestrictedComponent>
 
@@ -53,7 +57,7 @@ const CoveragePlan = ({ isDesktop }) => {
                 variant="inherit"
                 color="primary"
               >
-                Jerson!
+                {state.user && state.user.firstName}
               </Typography>
             </Typography>
           </RestrictedComponent>
@@ -65,25 +69,26 @@ const CoveragePlan = ({ isDesktop }) => {
         {/* Card and Amount Payment */}
         <Box sx={{ display: isDesktop ? 'flex' : "block" }}>
           <Box sx={{ width: isDesktop ? '60%' : "100%" }}>
-            <CardLicense license="ABCDE" />
+            <CardLicense license={state.user ? state.user.license : ""} />
             <Box sx={{ my: 3 }}>
               <InsureAmountIndicator
-                insureAmount={insureAmount}
-                setInsureAmount={setInsureAmount}
+                insureAmount={state.insureAmount}
+                setInsureAmount={(amount) => updateStore({ insureAmount: amount })}
               />
             </Box>
 
             {/* Coberturas */}
             <Box>
               <CoverageList
-                monthlyAmount={monthlyAmount}
-                setMonthlyAmount={setMonthlyAmount}
+                monthlyAmount={state.monthlyAmount}
+                setMonthlyAmount={(amount) => updateStore({ monthlyAmount: amount })}
+                insureAmount={state.insureAmount}
               />
             </Box>
           </Box>
           <RestrictedComponent condition={isDesktop}>
             <Box sx={{ flexGrow: 1, pl: 6 }}>
-              <MonthlyPayment monthlyAmount={monthlyAmount} />
+              <MonthlyPayment monthlyAmount={state.monthlyAmount} />
             </Box>
           </RestrictedComponent>
         </Box>

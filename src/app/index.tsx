@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 // components
@@ -7,15 +7,19 @@ const LoginPage = React.lazy(() => import("./views/Login"));
 const CustomPlan = React.lazy(() => import("./views/CustomPlan"));
 const NotFoundPage = React.lazy(() => import("./views/NotFound"));
 
-const App: React.FC = () => (
+// TODO: Aplicar protección de rutas a '/plan' y '/gracias'
+
+const App = () => (
 	<BrowserRouter>
-		<Routes>
-			<Route path="/" element={<LayoutPage />}>
-				<Route index element={<LoginPage />} />
-				<Route path="plan" element={<CustomPlan />} />
-				<Route path="*" element={<NotFoundPage />} />
-			</Route>
-		</Routes>
+		<Suspense fallback={<span>loading</span>}>
+			<Routes>
+				<Route path="/" element={<LayoutPage />}>
+					<Route index element={<LoginPage />} />
+					<Route path="plan" element={<CustomPlan />} />
+					<Route path="*" element={<NotFoundPage />} />
+				</Route>
+			</Routes>
+		</Suspense>
 	</BrowserRouter>
 );
 

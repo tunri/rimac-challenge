@@ -23,8 +23,6 @@ const InsureAmountIndicator = ({
       setInsureAmount(insureAmount - rate);
   }
 
-
-
   return (
     <Box>
       <Box>

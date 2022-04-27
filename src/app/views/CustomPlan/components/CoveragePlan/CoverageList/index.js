@@ -1,24 +1,74 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
+
+import { OPTIONS_PROTECT_CAR } from 'app/data-mock/coverages';
+
 import TabPanel from 'app/components/TabPanel';
 import AccordionItem from './AccordionItem';
 
-import StolenTireIcon from 'assets/images/llanta-robada.svg';
-
 const a11yProps = (index) => ({ id: `tab-${index}`, 'aria-controls': `tabpanel-${index}` });
 
-const CoverageList = ({ monthlyAmount, setMonthlyAmount }) => {
+
+// se peude usar useCallback en las funciones, addItem y remove Item
+const getIndexItem = (items, id) => {
+  return items.findIndex(i => i.id === id);
+}
+
+const MAX_TOTAL = 16000;
+const itemChoque = OPTIONS_PROTECT_CAR[1];
+
+const CoverageList = ({
+  monthlyAmount,
+  setMonthlyAmount,
+  insureAmount,
+}) => {
   const [valueTab, setValueTab] = useState(0);
+  const [selectedCoverage, setSelectedCoverage] = useState([]);
 
   const handleChange = (ev, newValue) => {
     setValueTab(newValue);
   };
 
-  const handleToggleCoverage = (quantity) => {
-    setMonthlyAmount(monthlyAmount + quantity)
+  const removeItem = (selected) => {
+    setSelectedCoverage(selectedCoverage.filter(i => i.id !== selected.id));
+    setMonthlyAmount(monthlyAmount - selected.price);
   }
+
+  const addItem = (selected) => {
+    setSelectedCoverage([...selectedCoverage, selected]);
+    setMonthlyAmount(monthlyAmount + selected.price);
+  }
+
+
+  useEffect(() => {
+    const removeChoque = () => {
+      if (insureAmount >= MAX_TOTAL) {
+        const alreadyChoque = getIndexItem(selectedCoverage, itemChoque.id);
+        if (alreadyChoque > -1) {
+          removeItem(itemChoque)
+        }
+      }
+    }
+
+    removeChoque();
+    // solo para el reto, se puede refactorizar y mejorar con useMemo y useCallback y React.Memo
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [insureAmount]);
+
+  const handleToggleCoverage = (selected) => {
+
+    const idx = getIndexItem(selectedCoverage, selected.id);
+
+    if (idx > -1) {
+      removeItem(selected);
+    } else if (selected.id !== itemChoque.id || insureAmount < MAX_TOTAL) {
+      addItem(selected);
+    }
+  }
+
+  console.log('coverage list ');
 
   return (
     <Box sx={{ width: '100%' }}>
@@ -30,28 +80,14 @@ const CoverageList = ({ monthlyAmount, setMonthlyAmount }) => {
         </Tabs>
       </Box>
       <TabPanel value={valueTab} index={0}>
-        <AccordionItem
-          icon={StolenTireIcon}
-          title="abcder"
-          description="lorem lorem lolewrwerwer"
-          price={15}
-          onToggleCoverage={handleToggleCoverage}
-        />
-        <AccordionItem
-          icon={StolenTireIcon}
-          title="abcder"
-          description="lorem lorem lolewrwerwer"
-          price={20}
-          onToggleCoverage={handleToggleCoverage}
-        />
-
-        <AccordionItem
-          icon={StolenTireIcon}
-          title="abcder"
-          description="lorem lorem lolewrwerwer"
-          price={50}
-          onToggleCoverage={handleToggleCoverage}
-        />
+        {OPTIONS_PROTECT_CAR.map(coverage => (
+          <AccordionItem
+            key={coverage.id}
+            item={coverage}
+            isAdded={getIndexItem(selectedCoverage, coverage.id) > -1}
+            onToggleCoverage={handleToggleCoverage}
+          />
+        ))}
       </TabPanel>
       <TabPanel value={valueTab} index={1}>
         Protege a los que te rodean
