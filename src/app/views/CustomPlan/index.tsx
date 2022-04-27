@@ -13,7 +13,7 @@ const CustomPlan = () => {
 		>
 			<Box
 				className="page-plan__left"
-				sx={{ width: isDesktop ? `30%` : "100%" }}
+				sx={{ width: isDesktop ? `40%` : "100%" }}
 			>
 				<NavSteps isDesktop={isDesktop} />
 			</Box>

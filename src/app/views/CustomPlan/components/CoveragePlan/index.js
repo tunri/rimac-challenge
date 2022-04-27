@@ -1,4 +1,5 @@
 import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import RestrictedComponent from "app/components/RestrictedComponent";
@@ -10,6 +11,7 @@ import CoverageList from "./CoverageList";
 import BadgeRounded from "app/components/BadgeRounded";
 import { Link } from "react-router-dom";
 import useStore from "app/hooks/useStore";
+
 
 const CoveragePlan = ({ isDesktop }) => {
 
@@ -94,6 +96,28 @@ const CoveragePlan = ({ isDesktop }) => {
           </RestrictedComponent>
         </Box>
       </Box>
+      <RestrictedComponent condition={!isDesktop}>
+        <Box className="items-center" sx={{
+          pt: 3,
+          px: 3,
+          borderTop: t => `1px solid ${t.palette.primary.main}`,
+        }}
+        >
+          <Box sx={{ width: '50%' }}>
+            <Typography variant="h6" fontSize={24}>$ {state.monthlyAmount}</Typography>
+            <Typography variant="caption">MENSUAL</Typography>
+          </Box>
+          <Button
+            color="primary"
+            variant="contained"
+            size="large"
+            disableElevation
+            sx={{ height: 56, width: ' 50%' }}
+          >
+            Lo quiero
+          </Button>
+        </Box>
+      </RestrictedComponent>
     </Box>
   )
 };
